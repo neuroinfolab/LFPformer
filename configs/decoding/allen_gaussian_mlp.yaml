@@ -1,0 +1,20 @@
+architecture: GaussianXYZHead
+hidden:
+- 512
+- 256
+- 128
+batch_norm: true
+dropout:
+- 0.2
+- 0.2
+- 0.1
+loss: Gaussian NLL
+target_scaling: train mean/std
+epochs: 50
+batch_size: 32
+lr_head: 0.001
+lr_backbone_fullft: 5.0e-06
+lr_backbone_frozen: 0.0
+patience: 10
+postprocessing: inverse-variance channel pooling, PCA line projection, 116-region
+  atlas lookup

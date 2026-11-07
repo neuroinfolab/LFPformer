@@ -1,0 +1,10 @@
+# Copy this to paths.local.yaml and use these paths in the documented commands.
+# No data/checkpoint download is performed implicitly by LFPformer.
+workspace: ./workspace
+ibl_compact: ./data/ibl/compact
+ibl_eval: ./data/ibl/eval_v2_100k
+allen_compact: ./data/allen/compact_atlas_lp_eval
+neuronexus_lfp: ./data/neuronexus/lfp
+manipulator_arrays: ./data/ibl/manip_xyz
+encoder_checkpoint: ./checkpoints/encoder.pt
+embeddings: ./outputs/embeddings

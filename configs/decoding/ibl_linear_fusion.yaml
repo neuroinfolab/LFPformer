@@ -1,0 +1,13 @@
+architecture: linear Gaussian
+encoder: IBL 75k ManipDistc ep53
+input: frozen embedding + normalized manipulator XYZ
+target_scaling: CentroidNormalizer AP,DV,abs-midline ranges
+hemisphere: folded
+epochs: 20
+batch_size: 64
+lr: 0.0001
+warmup_ratio: 0.1
+min_lr_ratio: 0.01
+weight_decay: 0.0001
+subject_val_frac: 0.2
+split_seed: 0

@@ -1,0 +1,8 @@
+# Validated CUDA 12.8 environment; choose an appropriate PyTorch index for your GPU.
+torch==2.9.1
+torchaudio==2.9.1
+transformers==4.57.6
+numpy==2.2.0
+scipy==1.15.3
+scikit-learn==1.7.2
+# Dataset SDKs may require separate preprocessing environments (see docs/data.md).
