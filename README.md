@@ -6,8 +6,7 @@ and Transformer decoding, micromanipulator fusion, and channel pooling with
 geometric refinement.
 
 Bring your preprocessed recordings and a compatible trained checkpoint, or
-train a model using the included scripts and configurations. Raw recordings
-and trained weights are supplied separately.
+train a model using the included scripts and configurations. Raw recordings are supplied separately; public pretrained encoders are linked below.
 
 ## Install
 
@@ -27,6 +26,39 @@ See the [code index](docs/code_index.md) for source locations and `tests/` for e
 
 Using Codex or another coding agent? Read [AGENTS.md](AGENTS.md) for environment
 setup, inference commands, experiment workflows, and validation instructions.
+
+## Pretrained models on Hugging Face
+
+Download the four public **Large, 35,000-step** checkpoints from the
+[LFPformer collection](https://huggingface.co/collections/Shubhronyu/lfpformer-large-models-6af10ace16553acb982539dd). Each produces a 1,024-dimensional
+embedding per 3-second LFP window. All four use the same training-step budget;
+CCFDistc is the atlas-supervised comparator.
+
+| Objective | Model |
+|---|---|
+| MaskPred | [LFPformer-large-MaskPred-35k](https://huggingface.co/Shubhronyu/LFPformer-large-MaskPred-35k) |
+| ChanDistc | [LFPformer-large-ChanDistc-35k](https://huggingface.co/Shubhronyu/LFPformer-large-ChanDistc-35k) |
+| ManipDistc | [LFPformer-large-ManipDistc-35k](https://huggingface.co/Shubhronyu/LFPformer-large-ManipDistc-35k) |
+| CCFDistc | [LFPformer-large-CCFDistc-35k](https://huggingface.co/Shubhronyu/LFPformer-large-CCFDistc-35k) |
+
+After installing compatible PyTorch and torchaudio builds, install the remaining
+embedding dependencies and run from this repository:
+
+```bash
+python -m pip install "transformers==4.57.6" "safetensors>=0.7" huggingface_hub numpy
+python scripts/extract_hf_embeddings.py \
+  --model Shubhronyu/LFPformer-large-ChanDistc-35k \
+  --input windows.npz --output outputs/embeddings.npz --device cpu --batch-size 1
+```
+
+`windows.npz` must contain finite, preprocessed `signals` of shape `(N, 3750)`
+at 1,250 Hz. The helper resamples to 16 kHz, keeps the training signal scale,
+and writes `emb` of shape `(N, 1024)`. Use `--device cuda` for a compatible GPU.
+Replace the model ID with any of the four above. No Hugging Face login is required.
+
+These releases contain encoder/pretraining weights; fitted downstream decoders
+and their normalization are separate. See [the Hugging Face usage guide](docs/huggingface.md)
+for preprocessing, Python loading, offline use, and checkpoint compatibility.
 
 ## What is included
 

@@ -14,6 +14,10 @@ python scripts/predict_head.py --input outputs/embeddings.npz \
 
 For an Allen fine-tuned model, use its exported backbone for embedding extraction and its matching `head_state_dict` checkpoint for prediction. Do not use the original frozen encoder after fine-tuning the backbone. Omit whitening for heads trained without it.
 
+For the public Large 35k Hugging Face encoders, use the dedicated
+[Hugging Face embedding guide](huggingface.md). Those Safetensors folders are
+not direct inputs to the native `.pt` encoder commands above.
+
 ## Prediction schema
 
 | Key | Shape | Meaning |

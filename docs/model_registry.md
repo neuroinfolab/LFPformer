@@ -1,7 +1,9 @@
 # Checkpoint formats
 
 Use an encoder and decoder trained together, with their matching configuration
-and normalization. Checkpoints are supplied by the user or produced by training.
+and normalization. Public Large 35k encoders are available on [Hugging Face](huggingface.md).
+The table below describes the native research checkpoint formats; the Hub
+Safetensors releases use the separate embedding helper documented in that guide.
 
 | Model | Required checkpoint contents | Inference mode |
 |---|---|---|
